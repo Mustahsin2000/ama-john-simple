@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
@@ -10,14 +11,40 @@ const Shop = () => {
       .then(res=>res.json())
       .then(data=>setproduct(data))
     }
-    ,[])
+    ,[]);
 
-    const handleADDtoCart = (product) =>{
-        console.log(product);
+    //load korar por jeno local storage theke information chole ase thake data
+    useEffect(()=>{
+        const storedCart = getStoredCart(); //object hishebe dey
+        const savedCart = [];
+        for(const id in storedCart){
+            const addedProduct = products.find(product=>product.id===id);
+            if(addedProduct){
+                const quantity = storedCart[id];
+                addedProduct.quantity = quantity;
+                savedCart.push(addedProduct);
+            }
+        }
+        setcart(savedCart);
+    },[products])
+
+    const handleADDtoCart = (selectedProduct) =>{
+        console.log(selectedProduct);
+        let newCart = [];
+        const exists = cart.find(product=>product.id===selectedProduct.id);
+        if(!exists){
+            selectedProduct.quantity = 1;
+            newCart = [...cart,selectedProduct];
+        }
+        else{
+            const rest =cart.filter(product=>product.id !== selectedProduct.id);
+            exists.quantity = exists.quantity + 1;
+            newCart = [...rest,exists];
+        }
         // cart.push(product)
         ////cart a add korar jonno
-        const newCart = [...cart,product];
         setcart(newCart);
+        addToDb(selectedProduct.id)
     }
 
     return (
