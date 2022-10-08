@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
 const Shop = () => {
-    const [products,setproduct] = useState([]);
+   const products = useLoaderData();
     const [cart,setcart] = useState([]);//cart a add korar jonno
-    useEffect(()=>{
-      fetch('products.json')
-      .then(res=>res.json())
-      .then(data=>setproduct(data))
-    }
-    ,[]);
+    
 
     //load korar por jeno local storage theke information chole ase thake data
     useEffect(()=>{
