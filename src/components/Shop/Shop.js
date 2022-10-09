@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
-import { addToDb, getStoredCart } from '../../utilities/fakedb';
+import { Link, useLoaderData } from 'react-router-dom';
+import { addToDb, deleteShoppingCart, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
@@ -8,6 +8,10 @@ const Shop = () => {
    const products = useLoaderData();
     const [cart,setcart] = useState([]);//cart a add korar jonno
     
+    const clearCart = () =>{
+        setcart([]);
+        deleteShoppingCart();
+    }
 
     //load korar por jeno local storage theke information chole ase thake data
     useEffect(()=>{
@@ -52,7 +56,11 @@ const Shop = () => {
 
             </div>
             <div className="cart-container">
-              <Cart cart={cart}></Cart>
+              <Cart clearCart={clearCart} cart={cart}>
+                <Link to="/order">
+                    <button className='review'>Review Order</button>
+                </Link>
+              </Cart>
             </div>
         </div>
     );

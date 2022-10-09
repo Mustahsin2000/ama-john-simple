@@ -16,4 +16,20 @@
     padding: 10px;
     border-radius: 8px;
 }
+
+.review{
+    color: white;
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    background-color: #1C2B35;
+    text-align: center;
+    border-radius: 5px;
+}
+.review:hover{
+    background-color: steelblue;
+    cursor: pointer;
+}
+
 /*  */

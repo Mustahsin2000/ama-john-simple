@@ -5,6 +5,7 @@ import Inventory from './components/Inventory/Inventory';
 import Main from './components/Layouts/Main';
 import Orders from './components/Orders/Orders';
 import Shop from './components/Shop/Shop';
+import { ProductsandCartloader } from './Loaders/ProductsandCartloader';
 
 
 function App() {
@@ -22,9 +23,8 @@ function App() {
         },
         {
           path:'/order',
-          loader:()=>{
-            return fetch('products.json');
-          },
+          // ei component ta order section a cart and shop duita ekshathe load kore dekhanor jonno
+          loader : ProductsandCartloader,
           element:<Orders></Orders>
         },
         {

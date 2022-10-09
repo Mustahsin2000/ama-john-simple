@@ -3,3 +3,17 @@
     top: 0;
     padding: 30px 28px;
 }
+.clearCart{
+    color: white;
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    background-color: steelblue;
+    text-align: center;
+    border-radius: 5px;
+}
+.clearCart:hover{
+    background-color: #1C2B35;
+    cursor: pointer;
+}
