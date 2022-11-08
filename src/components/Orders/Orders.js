@@ -6,11 +6,11 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 import './Orders.css'
 
 const Orders = () => {
-    const {products,initialCart} = useLoaderData();
+    const {initialCart} = useLoaderData();
     const [cart,setcart] = useState(initialCart);
 
     const handleRemoveitem = (id) =>{
-        const remaining = cart.filter(product=>product.id !== id);
+        const remaining = cart.filter(product=>product._id !== id);
         setcart(remaining);
         removeFromDb(id);
     }
@@ -23,14 +23,18 @@ const Orders = () => {
           <div className='Shop'>
           <div className="orders-container">
               {
-                 cart.map(product=><ReviewItem key={product.id} product={product} handleRemoveitem={handleRemoveitem}></ReviewItem>)
+                 cart.map(product=><ReviewItem key={product._id} product={product} handleRemoveitem={handleRemoveitem}></ReviewItem>)
               }
               {
                 cart.length === 0 && <h2>No Items For Review.Please <Link to='/'>Shop More</Link></h2>
               }
             </div>
             <div className="cart-container">
-               <Cart clearCart={clearCart} cart={cart}></Cart>
+               <Cart clearCart={clearCart} cart={cart}>
+                <Link to='/shipping'>
+                  <button className='shipping'>proceed shipping</button>
+                </Link>
+               </Cart>
             </div>
           </div>
         </div>

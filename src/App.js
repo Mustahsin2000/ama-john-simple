@@ -3,9 +3,14 @@ import './App.css';
 import About from './components/About/About';
 import Inventory from './components/Inventory/Inventory';
 import Main from './components/Layouts/Main';
+import Login from './components/Login/Login';
+import MyLocation from './components/MyLocation';
 import Orders from './components/Orders/Orders';
+import Shipping from './components/Shipping/Shipping';
 import Shop from './components/Shop/Shop';
+import Signup from './components/Signup/Signup';
 import { ProductsandCartloader } from './Loaders/ProductsandCartloader';
+import PrivateRoutes from './Routes/PrivateRoutes';
 
 
 function App() {
@@ -16,9 +21,6 @@ function App() {
       children:[
         {
           path:'/',
-          loader:()=>{
-           return fetch('products.json');
-          },
           element:<Shop></Shop>
         },
         {
@@ -29,11 +31,27 @@ function App() {
         },
         {
           path:'/inventory',
-          element:<Inventory></Inventory>
+          element:<PrivateRoutes><Inventory></Inventory></PrivateRoutes>
+        },
+        {
+          path:'/shipping',
+          element:<PrivateRoutes><Shipping></Shipping></PrivateRoutes>
         },
         {
           path:'/about',
           element: <About></About>
+        },
+        {
+          path:'/login',
+          element:<Login></Login>
+        },
+        {
+          path:'/signup',
+          element:<Signup></Signup>
+        },
+        {
+          path:'/map',
+          element:<MyLocation></MyLocation>
         }
       ]
       
@@ -45,6 +63,7 @@ function App() {
   return (
     <div>
      <RouterProvider router={router}></RouterProvider>
+     
     </div>
   );
 }

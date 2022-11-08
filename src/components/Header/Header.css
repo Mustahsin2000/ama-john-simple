@@ -16,3 +16,16 @@
 .header-nav a:hover{
     color: yellow;
 }
+.header-mail{
+    color:rebeccapurple;
+    margin-left: 20px;
+}
+.btn-logout{
+    border: none;
+    margin-left: 20px;
+    background-color: cadetblue;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+}

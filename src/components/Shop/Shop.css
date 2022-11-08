@@ -6,13 +6,32 @@
 .products-container{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap: 45px;
+    gap: 25px;
+    
 }
 .cart-header{
     text-align: center;
 }
 .cart-container{
     background-color: lightgreen;
+    padding:5px;
+    border-radius: 8px;
+}
+
+.pagination{
+    margin-left: 200px;
+    margin-bottom: 50px;
+
+}
+.pagination button{
+    margin-left: 20px;
+}
+
+.pagination .selected{
+    background-color: greenyellow;
+    border: gold;
+    font-weight: bold;
+    width: 40px;
     padding: 10px;
     border-radius: 8px;
 }
